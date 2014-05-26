@@ -1,0 +1,43 @@
+  include ds_389::service
+  class {'ds_389::install' : } ->
+  ds_389::site { 'ops' :
+    suite_spot_group   => 'nobody',
+    suite_spot_user_id => 'nobody',
+    modify_ldif_file  => [
+      'plugin.ldif',
+    ], 
+    schema_extension => [
+      '99user.ldif'
+    ],
+    add_ldif_file   => [
+            'top_dn.ldif',
+    ],
+    root_dn         => 'cn=Directory Manager',
+    root_dn_pwd     => '1234qwer',
+    server_port     => '389',
+    server_ssl_port => '636',
+    suffix          => 'dc=blah,dc=com,c=au',
+    base_data       => 'false',
+    
+  }  
+  ds_389::site { 'user' :
+    suite_spot_group   => 'nobody',
+    suite_spot_user_id => 'nobody',
+    modify_ldif_file  => [
+      'plugin.ldif',
+    ], 
+    schema_extension => [
+      '99user.ldif'
+    ],
+    add_ldif_file   => [
+            'top_dn.ldif',
+    ],
+    root_dn         => 'cn=Directory Manager',
+    root_dn_pwd     => '1234qwer',
+    server_port     => '1389',
+    server_ssl_port => '1636',
+    suffix          => 'dc=blah,dc=com,c=au',
+    base_data       => 'false',
+    
+  }  
+

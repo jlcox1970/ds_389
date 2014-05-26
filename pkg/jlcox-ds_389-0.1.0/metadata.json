@@ -1,0 +1,45 @@
+{
+  "name": "jlcox-ds_389",
+  "version": "0.1.0",
+  "source": "UNKNOWN",
+  "author": "jason cox",
+  "license": "Apache License, Version 2.0",
+  "summary": "Install and set up DS389 on RHEL servers",
+  "description": "Sets up the DS389 service on RHEL servers allowing for multiple directories to be controlled",
+  "project_page": "https://github.com/jlcox1970/ds_389",
+  "dependencies": [
+    {
+      "name": "puppetlabs/stdlib",
+      "version_requirement": ">=3.2.0 <5.0.0"
+    }
+  ],
+  "types": [
+
+  ],
+  "checksums": {
+    "Modulefile": "3980bd771ab5841e30d71699f81e245f",
+    "README": "75e2cc84ecfb46900b269ba7f7fa236d",
+    "manifests/base_load_list.pp": "7fc2c1b079ccbe91814b8cd73fb16ee5",
+    "manifests/init.pp": "e7b7fbfc0162574ef325203431b1950c",
+    "manifests/install.pp": "f1420307ce35621bc22839f7542e7899",
+    "manifests/ldif_add.pp": "e4a1417472a120315785f35a660c2cc2",
+    "manifests/ldif_base_load.pp": "aa6009a79a167487479e3a3d383a6fde",
+    "manifests/ldif_modify.pp": "a582e305bb0c7b188005a1f039e2b431",
+    "manifests/ldif_ssl.pp": "0befd23f7555d29d5766d366481e8718",
+    "manifests/replication.pp": "cc5855b94af796296349939e6a3c2d4a",
+    "manifests/schema_extension_load.pp": "fd48b5d81303f2aa640d0a4303c4ec8c",
+    "manifests/service.pp": "c7c405697367f2882df70aa92ed25c95",
+    "manifests/site.pp": "3227f4492d24402b4cf55a1db075c219",
+    "manifests/test": "2dbace99f18b4714f371920828f3ef9f",
+    "spec/spec_helper.rb": "a55d1e6483344f8ec6963fcb2c220372",
+    "templates/base_api.ldif.erb": "747bcaf25d180a5188a005e8917820f0",
+    "templates/base_lookup.ldif.erb": "7c40569af5848e4a3bd00f45c3c88b68",
+    "templates/encrypt_lookup.ldif.erb": "bc66223139243c9784ffeee077da9af7",
+    "templates/encrypt_user.ldif.erb": "09c1c9072b9b37ec57fc1ea84e1ae21c",
+    "templates/plugin.ldif.erb": "36900be466d36ffa5d2b44f45ad2a59c",
+    "templates/ssl.ldif.erb": "b5e1e829741aceb44a4317ef3c25a600",
+    "templates/top_dn.ldif.erb": "dbdce54d2bf6580fbd61c01b6c0cc68c",
+    "templates/user_group_ou.ldif.erb": "747bcaf25d180a5188a005e8917820f0",
+    "tests/init.pp": "b36b53b045de33ea135afdbaa60e82d2"
+  }
+}
