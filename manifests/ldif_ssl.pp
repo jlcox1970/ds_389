@@ -1,12 +1,13 @@
 define ds_389::ldif_ssl (
-  $ldif_file          = split($name, '[:]'),
-  $root_dn            = $root_dn ,
-  $root_dn_pwd        = $root_dn_pwd,
-  $server_identifier  = $server_identifier,
-  $server_port        = $server_port,
-  $server_ssl_port    = $server_ssl_port,
-  $group              = $group,
-  $user               = $user,
+  $ldif_file              = split($name, '[:]'),
+  $root_dn                = $root_dn ,
+  $root_dn_pwd            = $root_dn_pwd,
+  $server_identifier      = $server_identifier,
+  $server_port            = $server_port,
+  $server_ssl_port        = $server_ssl_port,
+  $group                  = $group,
+  $user                   = $user,
+  $nsEncryptionAlgorithm  = $nsEncryptionAlgorithm
 ){
   include ds_389::service
   $install_ldif_file  = $ldif_file[1]

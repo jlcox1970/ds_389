@@ -48,8 +48,8 @@ define ds_389::site (
   $server_port           = $server_port,
   $server_ssl_port       = $server_ssl_port,
   $suffix                = $suffix,
-  $service               = 'dirsrv'                 
-
+  $service               = 'dirsrv',                 
+  $nsEncryptionAlgorithm = pick($nsEncryptionAlgorithm ,'AES')
  ) {
   include ds_389::base_load_list 
   include ds_389::service
@@ -213,13 +213,14 @@ define ds_389::site (
     require           => Anchor["${server_identifier} ds_389::site::end"],
   } ->
   ds_389::ldif_ssl { "${server_identifier}_init:ssl.ldif" :
-    server_identifier => $server_identifier,
-    root_dn           => $root_dn,
-    group             => $suite_spot_group,
-    user              => $suite_spot_user_id ,
-    root_dn_pwd       => $root_dn_pwd,
-    server_port       => $server_port,
-    server_ssl_port   => $server_ssl_port,
+    server_identifier     => $server_identifier,
+    root_dn               => $root_dn,
+    group                 => $suite_spot_group,
+    user                  => $suite_spot_user_id ,
+    root_dn_pwd           => $root_dn_pwd,
+    server_port           => $server_port,
+    server_ssl_port       => $server_ssl_port,
+    nsEncryptionAlgorithm => $nsEncryptionAlgorithm,
   } ->
   Ds_389::Ldif_modify <<| tag == "${env}_${hostname}_ldif_modify" |>> ->
   Ds_389::Ldif_add <<| tag == "${env}_${hostname}_ldif_add" |>> ->

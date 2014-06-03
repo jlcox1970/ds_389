@@ -3,26 +3,26 @@ changetype: add
 objectclass: top
 objectclass: nsAttributeEncryption
 cn: givenname
-nsEncryptionAlgorithm: AES
+nsEncryptionAlgorithm: <%= @nsEncryptionAlgorithm %>
 
 dn: cn=cn,cn=encrypted attributes,cn=userRoot,cn=ldbm database,cn=plugins,cn=config
 changetype: add
 objectclass: top
 objectclass: nsAttributeEncryption
 cn: cn
-nsEncryptionAlgorithm: AES
+nsEncryptionAlgorithm: <%= @nsEncryptionAlgorithm %>
 
 dn: cn=sn,cn=encrypted attributes,cn=userRoot,cn=ldbm database,cn=plugins,cn=config
 changetype: add
 objectclass: top
 objectclass: nsAttributeEncryption
 cn: sn
-nsEncryptionAlgorithm: AES
+nsEncryptionAlgorithm: <%= @nsEncryptionAlgorithm %>
 
 dn: cn=mail,cn=encrypted attributes,cn=userRoot,cn=ldbm database,cn=plugins,cn=config
 changetype: add
 objectclass: top
 objectclass: nsAttributeEncryption
 cn: mail
-nsEncryptionAlgorithm: AES
+nsEncryptionAlgorithm: <%= @nsEncryptionAlgorithm %>
 
