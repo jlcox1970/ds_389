@@ -5,13 +5,13 @@ define ds_389::ldif_add (
   $server_identifier  = $server_identifier,
   $server_port        = $server_port,
   $server_ssl_port    = $server_ssl_port,
-  $suffix             = $suffix, 
+  $suffix             = $suffix,
   $user               = $user,
   $group              = $group,
 ){
   include ds_389::service
   $install_ldif_file  = $ldif_file[1]
-  $dir_inst_hostname  = $hostname
+  $dir_inst_hostname  = $::hostname
   $ldapadd            = '/usr/bin/ldapadd'
   $database           = "/etc/dirsrv/slapd-${server_identifier}"
 
@@ -28,11 +28,11 @@ define ds_389::ldif_add (
     $dc                 = $dc_array[1]
   }
   if ( $install_ldif_file != 'none' ) and ( $install_ldif_file != undef ) {
-    file{ "$server_identifier add: build $install_ldif_file ldif" :
-      name    => "$database/$install_ldif_file",
+    file{ "${server_identifier} add: build ${install_ldif_file} ldif" :
+      name    => "${database}/${install_ldif_file}",
       content => template("${module_name}/${install_ldif_file}.erb"),
     }->
-    exec {"$server_identifier adding ldif $install_ldif_file" :
+    exec {"${server_identifier} adding ldif ${install_ldif_file}" :
       command => "/bin/cat ${database}/${install_ldif_file} | ${ldapadd} -h ${dir_inst_hostname} -p ${server_port} -x -D \"${root_dn}\" -w ${root_dn_pwd} ; touch ${database}/${install_ldif_file}.done ; /bin/sleep 1",
       creates => "${database}/${install_ldif_file}.done",
     }

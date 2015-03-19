@@ -10,7 +10,7 @@ define ds_389::ldif_modify (
 ){
   include ds_389::service
   $install_ldif_file  = $ldif_file[1]
-  $dir_inst_hostname  = $hostname
+  $dir_inst_hostname  = $::hostname
   $ldapmodify         = '/usr/bin/ldapmodify'
   $database           = "/etc/dirsrv/slapd-${server_identifier}"
 
@@ -19,11 +19,11 @@ define ds_389::ldif_modify (
     group => $group,
   }
   if ( $install_ldif_file != 'none' ) and ( $install_ldif_file != 'ssl.ldif' ) and ($install_ldif_file != undef ){
-    file{ "$name modify $install_ldif_file ldif" :
-      name    => "$database/$install_ldif_file",
+    file{ "${name} modify ${install_ldif_file} ldif" :
+      name    => "${database}/${install_ldif_file}",
       content => template("${module_name}/${install_ldif_file}.erb"),
     }->
-    exec {"$name ldif modify $install_ldif_file" :
+    exec {"${name} ldif modify ${install_ldif_file}" :
       command => "/bin/cat ${database}/${install_ldif_file} |${ldapmodify} -h ${dir_inst_hostname} -p ${server_port} -x -D \"${root_dn}\" -w ${root_dn_pwd} ; touch ${database}/${install_ldif_file}.done",
       creates => "${database}/${install_ldif_file}.done",
     }

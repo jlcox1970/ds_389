@@ -11,25 +11,25 @@ define ds_389::replication (
   #suffix_esc        = $suffix_esc
   #role              = $role
 ){
- $database          = "/etc/dirsrv/slapd-${server_identifier}"
- $certutil          = '/usr/bin/certutil'
- $ldapmodify        = '/usr/bin/ldapmodify'
- $CA1_file          ="${database}/${server_identifier}CA1.cer"
+  $database          = "/etc/dirsrv/slapd-${server_identifier}"
+  $certutil          = '/usr/bin/certutil'
+  $ldapmodify        = '/usr/bin/ldapmodify'
+  $CA1_file          ="${database}/${server_identifier}CA1.cer"
 
- $hostname_CA1      = inline_template("<%= puts %x[ /bin/echo iiiiiii  ] -%>")
- notify {"Ttttt" :
-   message => inline_template(" puts %x[ /bin/echo iiiiiii  ] ")
+  $hostname_CA1      = inline_template('<%= puts %x[ /bin/echo iiiiiii  ] -%>')
+  notify {'Ttttt' :
+    message => inline_template(' puts %x[ /bin/echo iiiiiii  ] ')
 
- }
+  }
 
- notify {"DB":
-   message => "$database",
-   }
-   notify {"CA1_file":
-     message => "$CA1_file"
-   }
-  notify {"test" :
-   message => "$hostname_CA1",
- }
+  notify {'DB':
+    message => $database,
+  }
+  notify {'CA1_file':
+    message => $CA1_file
+  }
+  notify {'test' :
+    message => $hostname_CA1,
+  }
 
 }
